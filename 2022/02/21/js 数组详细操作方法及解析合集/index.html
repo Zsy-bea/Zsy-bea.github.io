@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数组原型提供了非常多的方法，这里分为三类，一类会改变原数组的值，一类是不会改变原数组，以及数组的遍历方法。 一、改变原数组的方法(9个):1234ES5:splice、sort、pop、shift、push、unshift、reverseES6:copyWithin、fill 1. splice() 添加&#x2F;删除数组元素定义：splice() 方法向数组中添加&#x2F;删除项目，然后返回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js 数组详细操作方法及解析合集">
+<meta property="og:url" content="https://zsy-bea.github.io/2022/02/21/js%20%E6%95%B0%E7%BB%84%E8%AF%A6%E7%BB%86%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95%E5%8F%8A%E8%A7%A3%E6%9E%90%E5%90%88%E9%9B%86/index.html">
+<meta property="og:site_name" content="Zsy-beauty blogs">
+<meta property="og:description" content="数组原型提供了非常多的方法，这里分为三类，一类会改变原数组的值，一类是不会改变原数组，以及数组的遍历方法。 一、改变原数组的方法(9个):1234ES5:splice、sort、pop、shift、push、unshift、reverseES6:copyWithin、fill 1. splice() 添加&#x2F;删除数组元素定义：splice() 方法向数组中添加&#x2F;删除项目，然后返回">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-21T02:47:14.150Z">
+<meta property="article:modified_time" content="2022-02-21T03:11:29.834Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>js 数组详细操作方法及解析合集 - Zsy-beauty blogs</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"zsy-bea.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>zhu sy</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/night.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="js 数组详细操作方法及解析合集">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-21 10:47" pubdate>
+        February 21, 2022 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      91 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">js 数组详细操作方法及解析合集</h1>
+            
+            <div class="markdown-body">
+              <p>数组原型提供了非常多的方法，这里分为三类，一类会改变原数组的值，一类是不会改变原数组，以及数组的遍历方法。</p>
+<h3 id="一、改变原数组的方法-9个"><a href="#一、改变原数组的方法-9个" class="headerlink" title="一、改变原数组的方法(9个):"></a>一、改变原数组的方法(9个):</h3><figure class="highlight javascript"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">ES5</span>:<br>splice、sort、pop、shift、push、unshift、reverse<br><span class="hljs-title class_">ES6</span>:<br>copyWithin、fill<br></code></pre></td></tr></table></figure>
+<h4 id="1-splice-添加-x2F-删除数组元素"><a href="#1-splice-添加-x2F-删除数组元素" class="headerlink" title="1. splice() 添加&#x2F;删除数组元素"></a>1. splice() 添加&#x2F;删除数组元素</h4><p>定义：splice() 方法向数组中添加&#x2F;删除项目，然后返回被删除的项目。<br>语法：array.splice(index,howmany,item1,…..,itemX)<br>参数：<br>index：必需。整数，规定添加&#x2F;删除项目的位置，使用负数可从数组结尾处规定位置。<br>howmany：可选。要删除的项目数量。如果设置为 0，则不会删除项目。<br>item1, …, itemX： 可选。向数组添加的新项目。<br>返回值: 如果有元素被删除,返回包含被删除项目的新数组。<br>eg1：删除元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>];<br><span class="hljs-keyword">let</span> item = a.<span class="hljs-title function_">splice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// [1,2,3]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// [4,5,6,7]</span><br><span class="hljs-comment">// 从数组下标0开始，删除3个元素</span><br><span class="hljs-keyword">let</span> item = a.<span class="hljs-title function_">splice</span>(-<span class="hljs-number">1</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// [7]</span><br><span class="hljs-comment">// 从最后一个元素开始删除3个元素，因为最后一个元素，所以只删除了7</span><br></code></pre></td></tr></table></figure>
+<p>eg2：删除并添加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>];<br><span class="hljs-keyword">let</span> item = a.<span class="hljs-title function_">splice</span>(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-string">&#x27;添加&#x27;</span>); <span class="hljs-comment">// [1,2,3]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// [&#x27;添加&#x27;,4,5,6,7]</span><br><span class="hljs-comment">// 从数组下标0开始，删除3个元素，并添加元素&#x27;添加&#x27;</span><br> <span class="hljs-keyword">let</span> b = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>];<br><span class="hljs-keyword">let</span> item = b.<span class="hljs-title function_">splice</span>(-<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-string">&#x27;添加1&#x27;</span>,<span class="hljs-string">&#x27;添加2&#x27;</span>); <span class="hljs-comment">// [6,7]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b); <span class="hljs-comment">// [1,2,3,4,5,&#x27;添加1&#x27;,&#x27;添加2&#x27;]</span><br><span class="hljs-comment">// 从数组最后第二个元素开始，删除3个元素，并添加两个元素&#x27;添加1&#x27;、&#x27;添加2&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>eg3：不删除只添加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>];<br><span class="hljs-keyword">let</span> item = a.<span class="hljs-title function_">splice</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;添加1&#x27;</span>,<span class="hljs-string">&#x27;添加2&#x27;</span>); <span class="hljs-comment">// [] 没有删除元素，返回空数组</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// [&#x27;添加1&#x27;,&#x27;添加2&#x27;,1,2,3,4,5,6,7]</span><br><span class="hljs-keyword">let</span> b = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>];<br><span class="hljs-keyword">let</span> item = b.<span class="hljs-title function_">splice</span>(-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-string">&#x27;添加1&#x27;</span>,<span class="hljs-string">&#x27;添加2&#x27;</span>); <span class="hljs-comment">// [] 没有删除元素，返回空数组</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b); <span class="hljs-comment">// [1,2,3,4,5,6,&#x27;添加1&#x27;,&#x27;添加2&#x27;,7] 在最后一个元素的前面添加两个元素</span><br></code></pre></td></tr></table></figure>
+<h4 id="2-sort-数组排序"><a href="#2-sort-数组排序" class="headerlink" title="2. sort() 数组排序"></a>2. sort() 数组排序</h4><p>定义：sort()方法对数组元素进行排序，并返回这个数组。<br>参数可选：规定排序顺序的比较函数。<br>默认情况下sort()方法没有传比较函数的话，默认按字母升序，如果不是元素不是字符串的话，会调用toString()方法将元素转化为字符串的Unicode(万国码)位点，然后再比较字符。</p>
+<h4 id="3-pop-删除一个数组中的最后的一个元素"><a href="#3-pop-删除一个数组中的最后的一个元素" class="headerlink" title="3. pop() 删除一个数组中的最后的一个元素"></a>3. pop() 删除一个数组中的最后的一个元素</h4><p>定义：pop() 方法删除一个数组中的最后的一个元素，并且返回这个元素。<br>参数：无。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span>  a =  [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br><span class="hljs-keyword">let</span> item = a.<span class="hljs-title function_">pop</span>();  <span class="hljs-comment">// 3</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// [1,2]</span><br></code></pre></td></tr></table></figure>
+<h4 id="4-shift-删除数组的第一个元素"><a href="#4-shift-删除数组的第一个元素" class="headerlink" title="4. shift() 删除数组的第一个元素"></a>4. shift() 删除数组的第一个元素</h4><p>定义：shift()方法删除数组的第一个元素，并返回这个元素。<br>参数：无。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span>  a =  [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br><span class="hljs-keyword">let</span> item = a.<span class="hljs-title function_">shift</span>();  <span class="hljs-comment">// 1</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// [2,3]</span><br></code></pre></td></tr></table></figure>
+<h4 id="5-push-向数组的末尾添加元素"><a href="#5-push-向数组的末尾添加元素" class="headerlink" title="5. push() 向数组的末尾添加元素"></a>5. push() 向数组的末尾添加元素</h4><p>定义：push() 方法可向数组的末尾添加一个或多个元素，并返回新的长度。<br>参数：item1, item2, …, itemX ,要添加到数组末尾的元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span>  a =  [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br><span class="hljs-keyword">let</span> item = a.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;末尾&#x27;</span>);  <span class="hljs-comment">// 4</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// [1,2,3,&#x27;末尾&#x27;]</span><br></code></pre></td></tr></table></figure>
+<h4 id="6-unshift"><a href="#6-unshift" class="headerlink" title="6. unshift()"></a>6. unshift()</h4><p>定义：unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。<br>参数：item1, item2, …, itemX ,要添加到数组开头的元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span>  a =  [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br><span class="hljs-keyword">let</span> item = a.<span class="hljs-title function_">unshift</span>(<span class="hljs-string">&#x27;开头&#x27;</span>);  <span class="hljs-comment">// 4</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// [&#x27;开头&#x27;,1,2,3]</span><br></code></pre></td></tr></table></figure>
+<h4 id="7-reverse-颠倒数组中元素的顺序"><a href="#7-reverse-颠倒数组中元素的顺序" class="headerlink" title="7. reverse() 颠倒数组中元素的顺序"></a>7. reverse() 颠倒数组中元素的顺序</h4><p>定义：reverse() 方法用于颠倒数组中元素的顺序。<br>参数：无。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span>  a =  [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br>a.<span class="hljs-title function_">reverse</span>();  <br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// [3,2,1]</span><br></code></pre></td></tr></table></figure>
+<h4 id="8-copyWithin-指定位置的成员复制到其他位置"><a href="#8-copyWithin-指定位置的成员复制到其他位置" class="headerlink" title="8. copyWithin() 指定位置的成员复制到其他位置"></a>8. copyWithin() 指定位置的成员复制到其他位置</h4><p>定义：在当前数组内部，将指定位置的成员复制到其他位置,并返回这个数组。<br>语法：array.copyWithin(target, start &#x3D; 0, end &#x3D; this.length)<br>参数：<br>target：必需。从该位置开始替换数据。如果为负值，表示倒数。<br>start：可选。从该位置开始读取数据，默认为 0。如果为负值，表示倒数。<br>end：可选。到该位置前停止读取数据，默认等于数组长度。使用负数可从数组结尾处规定位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// -2相当于3号位，-1相当于4号位</span><br>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>].<span class="hljs-title function_">copyWithin</span>(<span class="hljs-number">0</span>, -<span class="hljs-number">2</span>, -<span class="hljs-number">1</span>)<br><span class="hljs-comment">// [4, 2, 3, 4, 5]</span><br><span class="hljs-keyword">var</span> a = [<span class="hljs-string">&#x27;OB1&#x27;</span>,<span class="hljs-string">&#x27;Koro1&#x27;</span>,<span class="hljs-string">&#x27;OB2&#x27;</span>,<span class="hljs-string">&#x27;Koro2&#x27;</span>,<span class="hljs-string">&#x27;OB3&#x27;</span>,<span class="hljs-string">&#x27;Koro3&#x27;</span>,<span class="hljs-string">&#x27;OB4&#x27;</span>,<span class="hljs-string">&#x27;Koro4&#x27;</span>,<span class="hljs-string">&#x27;OB5&#x27;</span>,<span class="hljs-string">&#x27;Koro5&#x27;</span>]<br><span class="hljs-comment">// 2位置开始被替换,3位置开始读取要替换的 5位置前面停止替换</span><br>a.<span class="hljs-title function_">copyWithin</span>(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>)<br><span class="hljs-comment">// [&quot;OB1&quot;,&quot;Koro1&quot;,&quot;Koro2&quot;,&quot;OB3&quot;,&quot;OB3&quot;,&quot;Koro3&quot;,&quot;OB4&quot;,&quot;Koro4&quot;,&quot;OB5&quot;,&quot;Koro5&quot;] </span><br></code></pre></td></tr></table></figure>
+<h4 id="9-fill-填充数组"><a href="#9-fill-填充数组" class="headerlink" title="9. fill() 填充数组"></a>9. fill() 填充数组</h4><p>定义：使用给定值，填充一个数组。<br>参数：<br>第一个元素：必需。要填充数组的值。<br>第二个元素：可选。填充的开始位置,默认值为0。<br>第三个元素：可选。填充的结束位置，默认是为this.length。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript">[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>].<span class="hljs-title function_">fill</span>(<span class="hljs-number">7</span>)<br><span class="hljs-comment">// [7, 7, 7]</span><br>[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>].<span class="hljs-title function_">fill</span>(<span class="hljs-number">7</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br><span class="hljs-comment">// [&#x27;a&#x27;, 7, &#x27;c&#x27;]</span><br></code></pre></td></tr></table></figure>
+<h3 id="二、不改变原数组的方法-8个"><a href="#二、不改变原数组的方法-8个" class="headerlink" title="二、不改变原数组的方法(8个):"></a>二、不改变原数组的方法(8个):</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">ES5</span>：<br>slice、join、toLocateString、toStrigin、concat、indexOf、lastIndexOf、<br><span class="hljs-title class_">ES7</span>：<br>includes<br></code></pre></td></tr></table></figure>
+<h4 id="1-slice-浅拷贝数组的元素"><a href="#1-slice-浅拷贝数组的元素" class="headerlink" title="1. slice() 浅拷贝数组的元素"></a>1. slice() 浅拷贝数组的元素</h4><p>定义：方法返回一个从开始到结束（不包括结束）选择的数组的一部分浅拷贝到一个新数组对象，且原数组不会被修改。<br>注意：字符串也有一个slice() 方法是用来提取字符串的，不要弄混了。<br>语法：array.slice(begin, end)<br>参数：<br>begin：可选。索引数值,接受负值，从该索引处开始提取原数组中的元素,默认值为0。<br>end：可选。索引数值(不包括),接受负值，在该索引处前结束提取原数组元素，默认值为数组末尾(包括最后一个元素)。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-string">&#x27;world&#x27;</span>];<br><span class="hljs-keyword">let</span> b = a.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>); <span class="hljs-comment">// [&#x27;hello&#x27;]</span><br>a[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;改变原数组&#x27;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a,b); <span class="hljs-comment">// [&#x27;改变原数组&#x27;,&#x27;world&#x27;] [&#x27;hello&#x27;]</span><br>b[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;改变拷贝的数组&#x27;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a,b); <span class="hljs-comment">// [&#x27;改变原数组&#x27;,&#x27;world&#x27;] [&#x27;改变拷贝的数组&#x27;]</span><br></code></pre></td></tr></table></figure>
+<p>如上：新数组是浅拷贝的，元素是简单数据类型，改变之后不会互相干扰。<br>如果是复杂数据类型(对象,数组)的话，改变其中一个，另外一个也会改变。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;OBKoro1&#x27;</span>&#125;];<br><span class="hljs-keyword">let</span> b = a.<span class="hljs-title function_">slice</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b,a); <span class="hljs-comment">// [&#123;&quot;name&quot;:&quot;OBKoro1&quot;&#125;]  [&#123;&quot;name&quot;:&quot;OBKoro1&quot;&#125;]</span><br><span class="hljs-comment">// a[0].name = &#x27;改变原数组&#x27;;</span><br><span class="hljs-comment">// console.log(b,a); // [&#123;&quot;name&quot;:&quot;改变原数组&quot;&#125;] [&#123;&quot;name&quot;:&quot;改变原数组&quot;&#125;]</span><br><span class="hljs-comment">// b[0].name = &#x27;改变拷贝数组&#x27;,b[0].koro=&#x27;改变拷贝数组&#x27;;</span><br><span class="hljs-comment">//  [&#123;&quot;name&quot;:&quot;改变拷贝数组&quot;,&quot;koro&quot;:&quot;改变拷贝数组&quot;&#125;] [&#123;&quot;name&quot;:&quot;改变拷贝数组&quot;,&quot;koro&quot;:&quot;改变拷贝数组&quot;&#125;]</span><br></code></pre></td></tr></table></figure>
+<h4 id="2-join-数组转字符串"><a href="#2-join-数组转字符串" class="headerlink" title="2. join() 数组转字符串"></a>2. join() 数组转字符串</h4><p>定义：join() 方法用于把数组中的所有元素通过指定的分隔符进行分隔放入一个字符串，返回生成的字符串。<br>语法：array.join(str)<br>参数:<br>str：可选。指定要使用的分隔符，默认使用逗号作为分隔符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [<span class="hljs-string">&#x27;hello&#x27;</span>,<span class="hljs-string">&#x27;world&#x27;</span>];<br><span class="hljs-keyword">let</span> str = a.<span class="hljs-title function_">join</span>(); <span class="hljs-comment">// &#x27;hello,world&#x27;</span><br><span class="hljs-keyword">let</span> str2 = a.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;+&#x27;</span>); <span class="hljs-comment">// &#x27;hello+world&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>使用join方法或者下文说到的toString方法时，当数组中的元素也是数组或者是对象时会出现什么情况？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [[<span class="hljs-string">&#x27;OBKoro1&#x27;</span>,<span class="hljs-string">&#x27;23&#x27;</span>],<span class="hljs-string">&#x27;test&#x27;</span>];<br><span class="hljs-keyword">let</span> str1 = a.<span class="hljs-title function_">join</span>(); <span class="hljs-comment">// OBKoro1,23,test</span><br><span class="hljs-keyword">let</span> b = [&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;OBKoro1&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-string">&#x27;23&#x27;</span>&#125;,<span class="hljs-string">&#x27;test&#x27;</span>];<br><span class="hljs-keyword">let</span> str2 = b.<span class="hljs-title function_">join</span>(); <span class="hljs-comment">// [object Object],test</span><br><span class="hljs-comment">// 对象转字符串推荐JSON.stringify(obj);</span><br></code></pre></td></tr></table></figure>
+<p>所以，join()&#x2F;toString()方法在数组元素是数组的时候，会将里面的数组也调用join()&#x2F;toString(),如果是对象的话，对象会被转为[object Object]字符串。       </p>
+<h4 id="3-toLocaleString-数组转字符串"><a href="#3-toLocaleString-数组转字符串" class="headerlink" title="3. toLocaleString() 数组转字符串"></a>3. toLocaleString() 数组转字符串</h4><p>定义：返回一个表示数组元素的字符串。该字符串由数组中的每个元素的 toLocaleString() 返回值经调用 join() 方法连接（由逗号隔开）组成。<br>语法：array.toLocaleString()<br>参数：无。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;OBKoro1&#x27;</span>&#125;,<span class="hljs-number">23</span>,<span class="hljs-string">&#x27;abcd&#x27;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()];<br><span class="hljs-keyword">let</span> str = a.<span class="hljs-title function_">toLocaleString</span>(); <span class="hljs-comment">// [object Object],23,abcd,2018/5/28 下午1:52:20 </span><br></code></pre></td></tr></table></figure>
+<p>如上述例子：调用数组的toLocaleString方法，数组中的每个元素都会调用自身的toLocaleString方法，对象调用对象的toLocaleString,Date调用Date的toLocaleString。</p>
+<h4 id="4-toString-数组转字符串-不推荐"><a href="#4-toString-数组转字符串-不推荐" class="headerlink" title="4. toString() 数组转字符串 不推荐"></a>4. toString() 数组转字符串 不推荐</h4><p>定义：toString() 方法可把数组转换为由逗号链接起来的字符串。<br>语法：array.toString()<br>参数：无。<br>该方法的效果和join方法一样，都是用于数组转字符串的，但是与join方法相比没有优势，也不能自定义字符串的分隔符，因此不推荐使用。<br>值得注意的是：当数组和字符串操作的时候，js 会调用这个方法将数组自动转换成字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> b = [ <span class="hljs-string">&#x27;toString&#x27;</span>,<span class="hljs-string">&#x27;演示&#x27;</span>].<span class="hljs-title function_">toString</span>(); <span class="hljs-comment">// toString,演示</span><br><span class="hljs-keyword">let</span> a = [<span class="hljs-string">&#x27;调用toString&#x27;</span>,<span class="hljs-string">&#x27;连接在我后面&#x27;</span>]+<span class="hljs-string">&#x27;啦啦啦&#x27;</span>; <span class="hljs-comment">// 调用toString,连接在我后面啦啦啦</span><br></code></pre></td></tr></table></figure>
+<h4 id="5-concat"><a href="#5-concat" class="headerlink" title="5. concat"></a>5. concat</h4><p>定义：方法用于合并两个或多个数组，返回一个新数组。<br>语法：var newArr &#x3D; oldArray.concat(arrayX,arrayX,……,arrayX)<br>参数：<br>arrayX：必需。该参数可以是具体的值，也可以是数组对象。可以是任意多个。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"> <span class="hljs-keyword">let</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br> <span class="hljs-keyword">let</span> b = [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>];<br> <span class="hljs-comment">//连接两个数组</span><br> <span class="hljs-keyword">let</span> newVal = a.<span class="hljs-title function_">concat</span>(b); <span class="hljs-comment">// [1,2,3,4,5,6]</span><br> <span class="hljs-comment">// 连接三个数组</span><br> <span class="hljs-keyword">let</span> c = [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]<br> <span class="hljs-keyword">let</span> newVal2 = a.<span class="hljs-title function_">concat</span>(b, c); <span class="hljs-comment">// [1,2,3,4,5,6,7,8,9]</span><br> <span class="hljs-comment">// 添加元素</span><br> <span class="hljs-keyword">let</span> newVal3 = a.<span class="hljs-title function_">concat</span>(<span class="hljs-string">&#x27;添加元素&#x27;</span>,b, c,<span class="hljs-string">&#x27;再加一个&#x27;</span>); <br> <span class="hljs-comment">// [1,2,3,&quot;添加元素&quot;,4,5,6,7,8,9,&quot;再加一个&quot;]</span><br><span class="hljs-comment">// 合并嵌套数组  会浅拷贝嵌套数组</span><br> <span class="hljs-keyword">let</span> d = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span> ];<br> <span class="hljs-keyword">let</span> f = [<span class="hljs-number">3</span>,[<span class="hljs-number">4</span>]];<br> <span class="hljs-keyword">let</span> newVal4 = d.<span class="hljs-title function_">concat</span>(f); <span class="hljs-comment">// [1,2,3,[4]]</span><br></code></pre></td></tr></table></figure>
+<h4 id="6-indexOf-查找数组是否存在某个元素，返回下标"><a href="#6-indexOf-查找数组是否存在某个元素，返回下标" class="headerlink" title="6. indexOf() 查找数组是否存在某个元素，返回下标"></a>6. indexOf() 查找数组是否存在某个元素，返回下标</h4><p>定义：返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。<br>语法：array.indexOf(searchElement,fromIndex)<br>参数:<br>searchElement：必需。被查找的元素。<br>fromIndex：可选。开始查找的位置(不能大于等于数组的长度，返回-1)，接受负值，默认值为0。<br>严格相等的搜索：<br>数组的indexOf搜索跟字符串的indexOf不一样,数组的indexOf使用严格相等&#x3D;&#x3D;&#x3D;搜索元素，即数组元素要完全匹配才能搜索成功。<br>注意：indexOf()不能识别NaN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [<span class="hljs-string">&#x27;啦啦&#x27;</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">24</span>,<span class="hljs-title class_">NaN</span>]<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&#x27;啦&#x27;</span>));  <span class="hljs-comment">// -1 </span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&#x27;NaN&#x27;</span>));  <span class="hljs-comment">// -1 </span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&#x27;啦啦&#x27;</span>)); <span class="hljs-comment">// 0</span><br></code></pre></td></tr></table></figure>
+<h4 id="7-lastIndexOf-查找指定元素在数组中的最后一个位置"><a href="#7-lastIndexOf-查找指定元素在数组中的最后一个位置" class="headerlink" title="7. lastIndexOf() 查找指定元素在数组中的最后一个位置"></a>7. lastIndexOf() 查找指定元素在数组中的最后一个位置</h4><p>定义：方法返回指定元素,在数组中的最后一个的索引，如果不存在则返回 -1。（从数组后面往前查找）<br>语法：arr.lastIndexOf(searchElement,fromIndex)<br>参数：<br>searchElement：必需。被查找的元素。<br>fromIndex：可选。逆向查找开始位置，默认值数组的长度-1，即查找整个数组。<br>关于fromIndex有三个规则:<br>正值。如果该值大于或等于数组的长度，则整个数组会被查找。<br>负值。将其视为从数组末尾向前的偏移。(比如-2，从数组最后第二个元素开始往前查找)<br>负值。其绝对值大于数组长度，则方法返回 -1，即数组不会被查找。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a= [<span class="hljs-string">&#x27;OB&#x27;</span>,<span class="hljs-number">4</span>,<span class="hljs-string">&#x27;Koro1&#x27;</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;Koro1&#x27;</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-string">&#x27;Koro1&#x27;</span>]; <span class="hljs-comment">// 数组长度为10</span><br><span class="hljs-comment">// let b = a.lastIndexOf(&#x27;Koro1&#x27;,4); // 从下标4开始往前找 返回下标2</span><br><span class="hljs-comment">// let b = a.lastIndexOf(&#x27;Koro1&#x27;,100); //  大于或数组的长度 查找整个数组 返回9</span><br><span class="hljs-comment">// let b = a.lastIndexOf(&#x27;Koro1&#x27;,-11); // -1 数组不会被查找</span><br><span class="hljs-keyword">let</span> b = a.<span class="hljs-title function_">lastIndexOf</span>(<span class="hljs-string">&#x27;Koro1&#x27;</span>,-<span class="hljs-number">9</span>); <span class="hljs-comment">// 从第二个元素4往前查找，没有找到 返回-1</span><br></code></pre></td></tr></table></figure>
+<h4 id="8-ES7-includes-查找数组是否包含某个元素-返回布尔"><a href="#8-ES7-includes-查找数组是否包含某个元素-返回布尔" class="headerlink" title="8. ES7 includes() 查找数组是否包含某个元素 返回布尔"></a>8. ES7 includes() 查找数组是否包含某个元素 返回布尔</h4><p>定义：返回一个布尔值，表示某个数组是否包含给定的值<br>语法：array.includes(searchElement,fromIndex&#x3D;0)<br>参数：<br>searchElement：必需。被查找的元素。<br>fromIndex：可选。默认值为0，参数表示搜索的起始位置，接受负值。正值超过数组长度，数组不会被搜索，返回false。负值绝对值超过长数组度，重置从0开始搜索。<br>includes方法是为了弥补indexOf方法的缺陷而出现的:<br>indexOf方法不能识别NaN<br>indexOf方法检查是否包含某个值不够语义化，需要判断是否不等于-1，表达不够直观</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = [<span class="hljs-string">&#x27;OB&#x27;</span>,<span class="hljs-string">&#x27;Koro1&#x27;</span>,<span class="hljs-number">1</span>,<span class="hljs-title class_">NaN</span>];<br><span class="hljs-comment">// let b = a.includes(NaN); // true 识别NaN</span><br><span class="hljs-comment">// let b = a.includes(&#x27;Koro1&#x27;,100); // false 超过数组长度 不搜索</span><br><span class="hljs-comment">// let b = a.includes(&#x27;Koro1&#x27;,-3);  // true 从倒数第三个元素开始搜索 </span><br><span class="hljs-comment">// let b = a.includes(&#x27;Koro1&#x27;,-100);  // true 负值绝对值超过数组长度，搜索整个数组</span><br></code></pre></td></tr></table></figure>
+<h3 id="三、遍历方法-12个"><a href="#三、遍历方法-12个" class="headerlink" title="三、遍历方法(12个):"></a>三、遍历方法(12个):</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">ES5</span>：<br>forEach、every 、some、 filter、map、reduce、reduceRight、<br><span class="hljs-title class_">ES6</span>：<br>find、findIndex、keys、values、entries<br></code></pre></td></tr></table></figure>
+<h4 id="1-forEach"><a href="#1-forEach" class="headerlink" title="1. forEach"></a>1. forEach</h4><p>定义：按升序为数组中含有效值的每一项执行一次回调函数。<br>语法：array.forEach(function(currentValue, index, arr), thisValue)<br>参数：<br>function：必需。数组中每个元素需要调用的函数。<br>回调函数的参数：1. currentValue(必须),数组当前元素的值 2. index(可选), 当前元素的索引值 3. arr(可选),数组对象本身。<br>thisValue：可选。当执行回调函数时this绑定对象的值，默认值为undefined。<br>关于forEach()你要知道：<br>无法中途退出循环，只能用return退出本次回调，进行下一次回调。<br>它总是返回 undefined值,即使你return了一个值。</p>
+<h4 id="2-every-检测数组所有元素是否都符合判断条件"><a href="#2-every-检测数组所有元素是否都符合判断条件" class="headerlink" title="2. every 检测数组所有元素是否都符合判断条件"></a>2. every 检测数组所有元素是否都符合判断条件</h4><p>定义：方法用于检测数组所有元素是否都符合函数定义的条件。<br>语法：array.every(function(currentValue, index, arr), thisValue)<br>参数：(这几个方法的参数，语法都类似)<br>function：必需。数组中每个元素需要调用的函数。<br>回调函数的参数：1. currentValue(必须),数组当前元素的值 2. index(可选), 当前元素的索引值 3. arr(可选),数组对象本身。<br>thisValue：可选。当执行回调函数时this绑定对象的值，默认值为undefined。<br>方法返回值规则：<br>如果数组中检测到有一个元素不满足，则整个表达式返回 false，且剩余的元素不会再进行检测。<br>如果所有元素都满足条件，则返回 true。</p>
+<h4 id="3-some-数组中的是否有满足判断条件的元素"><a href="#3-some-数组中的是否有满足判断条件的元素" class="headerlink" title="3. some 数组中的是否有满足判断条件的元素"></a>3. some 数组中的是否有满足判断条件的元素</h4><p>定义：数组中的是否有满足判断条件的元素。<br>语法：array.some(function(currentValue, index, arr), thisValue)<br>参数：(这几个方法的参数，语法都类似)<br>function：必需。数组中每个元素需要调用的函数。<br>回调函数的参数：1. currentValue(必须),数组当前元素的值 2. index(可选), 当前元素的索引值 3. arr(可选),数组对象本身。<br>thisValue：可选。当执行回调函数时this绑定对象的值，默认值为undefined。<br>方法返回值规则：<br>如果有一个元素满足条件，则表达式返回true, 剩余的元素不会再执行检测。<br>如果没有满足条件的元素，则返回false。</p>
+<h4 id="4-filter-过滤原始数组，返回新数组"><a href="#4-filter-过滤原始数组，返回新数组" class="headerlink" title="4. filter 过滤原始数组，返回新数组"></a>4. filter 过滤原始数组，返回新数组</h4><p>定义: 返回一个新数组, 其包含通过所提供函数实现的测试的所有元素。<br>语法：let new_array &#x3D; arr.filter(function(currentValue, index, arr), thisArg)<br>参数：(这几个方法的参数，语法都类似)<br>function：必需。数组中每个元素需要调用的函数。<br>回调函数的参数：1. currentValue(必须),数组当前元素的值 2. index(可选), 当前元素的索引值 3. arr(可选),数组对象本身。<br>thisValue：可选。当执行回调函数时this绑定对象的值，默认值为undefined。</p>
+<h4 id="5-map-对数组中的每个元素进行处理，返回新的数组"><a href="#5-map-对数组中的每个元素进行处理，返回新的数组" class="headerlink" title="5. map 对数组中的每个元素进行处理，返回新的数组"></a>5. map 对数组中的每个元素进行处理，返回新的数组</h4><p>定义：创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。<br>语法：let new_array &#x3D; arr.map(function(currentValue, index, arr), thisArg)<br>参数：(这几个方法的参数，语法都类似)<br>function：必需。数组中每个元素需要调用的函数。<br>回调函数的参数：1. currentValue(必须),数组当前元素的值 2. index(可选), 当前元素的索引值 3. arr(可选),数组对象本身。<br>thisValue：可选。当执行回调函数时this绑定对象的值，默认值为undefined。</p>
+<h4 id="6-reduce-为数组提供累加器，合并为一个值"><a href="#6-reduce-为数组提供累加器，合并为一个值" class="headerlink" title="6. reduce 为数组提供累加器，合并为一个值"></a>6. reduce 为数组提供累加器，合并为一个值</h4><p>定义：reduce() 方法对累加器和数组中的每个元素（从左到右）应用一个函数，最终合并为一个值。<br>语法：array.reduce(function(total, currentValue, currentIndex, arr), initialValue)<br>参数：(这几个方法的参数，语法都类似)<br>function：必需。数组中每个元素需要调用的函数。<br>回调函数的参数     1. total(必须)，初始值, 或者上一次调用回调返回的值 2. currentValue(必须),数组当前元素的值 3. index(可选), 当前元素的索引值 4. arr(可选),数组对象本身。<br>initialValue：可选。指定第一次回调 的第一个参数。<br>回调第一次执行时:</p>
+<ul>
+<li>如果 initialValue 在调用 reduce 时被提供，那么第一个 total 将等于 initialValue，此时 currentValue 等于数组中的第一个值；</li>
+<li>如果 initialValue 未被提供，那么 total 等于数组中的第一个值，currentValue 等于数组中的第二个值。此时如果数组为空，那么将抛出 TypeError。</li>
+<li>如果数组仅有一个元素，并且没有提供 initialValue，或提供了 initialValue 但数组为空，那么回调不会被执行，数组的唯一值将被返回。<h4 id="7-reduceRight-从右至左累加"><a href="#7-reduceRight-从右至左累加" class="headerlink" title="7. reduceRight 从右至左累加"></a>7. reduceRight 从右至左累加</h4>这个方法除了与reduce执行方向相反外，其他完全与其一致，请参考上述 reduce 方法介绍。<h4 id="8-9-find-amp-findIndex-根据条件找到数组成员"><a href="#8-9-find-amp-findIndex-根据条件找到数组成员" class="headerlink" title="8~9. find()&amp; findIndex() 根据条件找到数组成员"></a>8~9. find()&amp; findIndex() 根据条件找到数组成员</h4>find()定义：用于找出第一个符合条件的数组成员，并返回该成员，如果没有符合条件的成员，则返回undefined。<br>findIndex()定义：返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。<br>语法：<br>let new_array &#x3D; arr.find(function(currentValue, index, arr), thisArg)<br>let new_array &#x3D; arr.findIndex(function(currentValue, index, arr), thisArg)<br>参数：(这几个方法的参数，语法都类似)<br>function：必需。数组中每个元素需要调用的函数。<br>回调函数的参数：1. currentValue(必须),数组当前元素的值 2. index(可选), 当前元素的索引值 3. arr(可选),数组对象本身。<br>thisValue：可选。当执行回调函数时this绑定对象的值，默认值为undefined。<br>这两个方法都可以识别NaN,弥补了indexOf的不足。<h4 id="10-12-keys-amp-values-amp-entries-遍历键名、遍历键值、遍历键名-键值"><a href="#10-12-keys-amp-values-amp-entries-遍历键名、遍历键值、遍历键名-键值" class="headerlink" title="10~12. keys()&amp;values()&amp;entries() 遍历键名、遍历键值、遍历键名+键值"></a>10~12. keys()&amp;values()&amp;entries() 遍历键名、遍历键值、遍历键名+键值</h4>定义：三个方法都返回一个新的 Array Iterator 对象，对象根据方法不同包含不同的值。<br>语法：array.keys()     array.values()     array.entries()<br>参数：无。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/17/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
