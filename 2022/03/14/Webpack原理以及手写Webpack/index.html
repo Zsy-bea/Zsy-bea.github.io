@@ -16,16 +16,16 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Webpack如何打包文件在我们正式开始手写webpack之前，我们先来看看webpack是如何打包文件的，在之前的文章中，我们说过，如果想利用webpack来对我们的项目进行打包，可分为三个步骤：  我们需要安装webpack以及webpack-cli，这里需要我们注意一点的是，webpack-cli 建议安装3.x的版本，否则会出现其他异常问题(因为webpack5刚出来，可能是兼容没有做好)">
+    <meta name="description" content="Webpack如何打包文件在我们正式开始手写webpack之前，我们先来看看webpack是如何打包文件的，如果想利用webpack来对我们的项目进行打包，可分为三个步骤：  我们需要安装webpack以及webpack-cli，这里需要我们注意一点的是，webpack-cli 建议安装3.x的版本，否则会出现其他异常问题(因为webpack5刚出来，可能是兼容没有做好)； 我们需要指定配置文件名">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webpack原理以及手写Webpack">
 <meta property="og:url" content="https://zsy-bea.github.io/2022/03/14/Webpack%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8A%E6%89%8B%E5%86%99Webpack/index.html">
 <meta property="og:site_name" content="Zsy-beauty blogs">
-<meta property="og:description" content="Webpack如何打包文件在我们正式开始手写webpack之前，我们先来看看webpack是如何打包文件的，在之前的文章中，我们说过，如果想利用webpack来对我们的项目进行打包，可分为三个步骤：  我们需要安装webpack以及webpack-cli，这里需要我们注意一点的是，webpack-cli 建议安装3.x的版本，否则会出现其他异常问题(因为webpack5刚出来，可能是兼容没有做好)">
+<meta property="og:description" content="Webpack如何打包文件在我们正式开始手写webpack之前，我们先来看看webpack是如何打包文件的，如果想利用webpack来对我们的项目进行打包，可分为三个步骤：  我们需要安装webpack以及webpack-cli，这里需要我们注意一点的是，webpack-cli 建议安装3.x的版本，否则会出现其他异常问题(因为webpack5刚出来，可能是兼容没有做好)； 我们需要指定配置文件名">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zsy-bea.github.io/2022/03/14/Webpack%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8A%E6%89%8B%E5%86%99Webpack/webpack.png">
 <meta property="article:published_time" content="2022-03-14T06:59:06.700Z">
-<meta property="article:modified_time" content="2022-03-14T07:01:27.857Z">
+<meta property="article:modified_time" content="2022-03-24T05:46:02.720Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Webpack">
 <meta name="twitter:card" content="summary_large_image">
@@ -240,7 +240,7 @@
             <h1 style="display: none">Webpack原理以及手写Webpack</h1>
             
             <div class="markdown-body">
-              <h2 id="Webpack如何打包文件"><a href="#Webpack如何打包文件" class="headerlink" title="Webpack如何打包文件"></a>Webpack如何打包文件</h2><p>在我们正式开始手写webpack之前，我们先来看看webpack是如何打包文件的，在之前的文章中，我们说过，如果想利用webpack来对我们的项目进行打包，可分为三个步骤：</p>
+              <h2 id="Webpack如何打包文件"><a href="#Webpack如何打包文件" class="headerlink" title="Webpack如何打包文件"></a>Webpack如何打包文件</h2><p>在我们正式开始手写webpack之前，我们先来看看webpack是如何打包文件的，如果想利用webpack来对我们的项目进行打包，可分为三个步骤：</p>
 <ol>
 <li>我们需要安装webpack以及webpack-cli，这里需要我们注意一点的是，webpack-cli 建议安装3.x的版本，否则会出现其他异常问题(因为webpack5刚出来，可能是兼容没有做好)；</li>
 <li>我们需要指定配置文件名称需为webpack.config.js，在其内部进行webpack的配置；</li>
